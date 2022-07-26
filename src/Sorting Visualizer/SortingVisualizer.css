@@ -1,0 +1,19 @@
+/* *{
+    background-color: 
+} */
+.container{
+    margin-left: 20px;
+    
+    margin-right: 0px;
+}
+
+.array-bar{
+    width: 2.5px;
+    background-color: aqua;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.btn{
+    margin: 10px 5px;
+}
