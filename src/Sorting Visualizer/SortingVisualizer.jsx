@@ -1,12 +1,12 @@
 import React from 'react';
-import {getMergeSortAnimations} from '../Sorting Algorithm/sortingAlgorithms.js';
+import {getMergeSortAnimations} from '../Sorting Algorithm/mergeSort.js';
 import {getBubbleSortAnimations} from '../Sorting Algorithm/bubbleSort.js';
 import { getQuickSortAnimations } from '../Sorting Algorithm/quickSort.js';
 
 import './SortingVisualizer.css';
 
-const ANIMATION_SPEED_MS = 5;
-const NUMBER_OF_ARRAY_BARS = 310;
+let ANIMATION_SPEED_MS = 5;
+const NUMBER_OF_ARRAY_BARS = 90;
 const PRIMARY_COLOR = 'turquoise';
 const SECONDARY_COLOR = 'red';
 
@@ -25,13 +25,14 @@ export default class SortingVisualizer extends React.Component {
 
   resetArray() {
     const array = [];
-    for (let i = 0; i < 150; i++) {
-      array.push(randomIntFromInterval(5, 600));
+    for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
+      array.push(randomIntFromInterval(10, 480));
     }
     this.setState({array});
   }
 
   mergeSort() {
+    ANIMATION_SPEED_MS = 10;
     const animations = getMergeSortAnimations(this.state.array);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -56,6 +57,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bubbleSort() {
+    ANIMATION_SPEED_MS = 5;
     const animations = getBubbleSortAnimations(this.state.array);
     
     const arrayBars = document.getElementsByClassName('array-bar');
@@ -89,6 +91,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   quickSort() {
+    ANIMATION_SPEED_MS = 20;
     const animations = getQuickSortAnimations(this.state.array);
     
 
@@ -142,11 +145,12 @@ export default class SortingVisualizer extends React.Component {
 
           </div>
         ))}
+        </div>
         <button onClick={()=>this.resetArray()} class="btn btn-outline-primary">Reset Array</button>
         <button onClick={()=>this.mergeSort()} class="btn btn-outline-primary">Merge Sort</button>
         <button onClick={()=>this.bubbleSort()} class="btn btn-outline-primary">Bubble Sort</button>
         <button onClick={()=>this.quickSort()} class="btn btn-outline-primary">Quick Sort</button>
-      </div>
+      
       </>
     );
   }
